@@ -3,7 +3,7 @@ package be.cegeka.orders.order.domain.items;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ITEMS"   )
+@Table(name = "ITEMS")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

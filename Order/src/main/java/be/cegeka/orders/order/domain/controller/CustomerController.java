@@ -27,13 +27,4 @@ public class CustomerController {
         customerService.addCustomer(firstName, lastName);
     }
 
-    @RequestMapping(method=RequestMethod.POST)
-    public
-    @ResponseBody
-    void addCustomerWithOrder(@RequestParam(value="firstname") String firstName,
-                              @RequestParam(value="lastname") String lastName,
-                              @RequestParam(value="orderdate") String orderDate){
-        customerService.addCustomerWithOrder(firstName, lastName, orderDate);
-    }
-
 }
