@@ -1,4 +1,4 @@
-package be.cegeka.orders.order.domain.customers;
+package be.cegeka.orders.order.domain.orders;
 
 import javax.inject.Named;
 import javax.persistence.Entity;
