@@ -1,7 +1,6 @@
 package be.cegeka.orders.order.domain.customers;
 
 import be.cegeka.orders.order.OrderApplication;
-import be.cegeka.orders.order.domain.repository.CustomerRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
