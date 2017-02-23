@@ -15,7 +15,6 @@ public class StockRepository {
     private EntityManager entityManager;
 
     public List<StockEntry> getStock() {
-        return null;
+        return entityManager.createQuery("select s from stock s", StockEntry.class).getResultList();
     }
-    //entityManager.createQuery("select s from stock s", StockEntry.class).getResultList()
 }
