@@ -1,5 +1,6 @@
 package be.cegeka.orders.order.domain.stock;
 
+import be.cegeka.orders.order.domain.items.Item;
 import org.hibernate.id.UUIDGenerator;
 
 import javax.persistence.*;
