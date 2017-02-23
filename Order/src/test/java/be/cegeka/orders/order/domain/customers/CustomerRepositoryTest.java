@@ -1,10 +1,9 @@
 package be.cegeka.orders.order.domain.customers;
 
 import be.cegeka.orders.order.OrderApplication;
-import org.assertj.core.api.Assertions;
+import be.cegeka.orders.order.domain.repository.CustomerRepository;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,6 +42,13 @@ public class CustomerRepositoryTest {
     @Test
     public void getAllShouldReturnAll() throws Exception {
         assertThat(customerRepository.getAll()).contains(seppe, johan);
+    }
+
+    @Test
+    public void addCustomerShoudAddCustomer(){
+        Customer paulien = new Customer("paulien", "lemay");
+        customerRepository.addCustomer(paulien);
+        assertThat(customerRepository.getAll()).contains(seppe, johan, paulien);
     }
 
     @After
