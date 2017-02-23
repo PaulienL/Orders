@@ -11,10 +11,13 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
-    private String id;
+    private int id;
 
     @Column(name="ORDER_DATE")
     private String orderDate;
+
+    @Column(name="CUSTOMER_ID")
+    private int customerId;
 
     public Order(String orderDate) {
         this.orderDate = orderDate;
