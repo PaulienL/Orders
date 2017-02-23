@@ -3,11 +3,12 @@ package be.cegeka.orders.order.domain.items;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ITEMS"   )
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID")
-    private String id;
+    private int id;
 
     @Column(name = "NAME")
     private String name;
@@ -27,7 +28,7 @@ public class Item {
         this.price = price;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

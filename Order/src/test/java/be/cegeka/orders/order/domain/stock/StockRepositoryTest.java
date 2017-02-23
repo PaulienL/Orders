@@ -39,7 +39,7 @@ public class StockRepositoryTest {
     }
 
     @Test
-    public void getAll_ShouldReturnAll(){
+    public void getStock_ShouldReturnStock(){
         Assertions.assertThat(stockRepository.getStock()).contains(stock1, stock2);
     }
 

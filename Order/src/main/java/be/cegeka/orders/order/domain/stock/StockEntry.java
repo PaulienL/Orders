@@ -6,11 +6,12 @@ import org.hibernate.id.UUIDGenerator;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "STOCK")
 public class StockEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STOCK_ID")
-    private String id;
+    private int id;
 
     @OneToOne
     private Item item;
@@ -21,7 +22,7 @@ public class StockEntry {
 
     public StockEntry(){}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
