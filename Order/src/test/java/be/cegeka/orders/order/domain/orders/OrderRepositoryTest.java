@@ -58,8 +58,8 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    public void getStock() throws Exception {
-
+    public void getOrder() throws Exception {
+        Assertions.assertThat(orderRepository.getOrders()).contains(order1, order2);
     }
 
     @After
