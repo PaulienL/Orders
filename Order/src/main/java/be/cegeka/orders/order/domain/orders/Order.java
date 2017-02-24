@@ -48,7 +48,13 @@ public class Order {
         this.packages = new ArrayList<>(Arrays.asList(packages));
     }
 
-    public void addShipment(){
+    public void addPackage(Package aPackage){
+        packages.add(aPackage);
+    }
+
+    public List<Package> getPackages() {
+        return packages;
+    }
 
     @Override
     public String toString() {
