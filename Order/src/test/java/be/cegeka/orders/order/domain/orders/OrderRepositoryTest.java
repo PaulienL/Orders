@@ -4,6 +4,7 @@ import be.cegeka.orders.order.OrderApplication;
 import be.cegeka.orders.order.domain.customers.Customer;
 import be.cegeka.orders.order.domain.stock.StockEntry;
 import org.assertj.core.api.Assertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,6 +56,11 @@ public class OrderRepositoryTest {
     @Test
     public void getStock() throws Exception {
 
+    }
+
+    @After
+    public void cleanDatabase(){
+        entityManager.clear();
     }
 
 }

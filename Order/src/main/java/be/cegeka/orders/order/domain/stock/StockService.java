@@ -1,10 +1,9 @@
 package be.cegeka.orders.order.domain.stock;
 
+import javax.inject.Named;
 import java.util.List;
 
-/**
- * Created by xanv on 24/02/2017.
- */
+@Named
 public class StockService {
     public List<StockEntry> getStock() {
         return null;
