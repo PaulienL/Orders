@@ -14,6 +14,7 @@ public class StockEntry {
     private int id;
 
     @OneToOne
+    @JoinColumn(name="ITEM_ID")
     private Item item;
 
     public StockEntry(Item item) {
