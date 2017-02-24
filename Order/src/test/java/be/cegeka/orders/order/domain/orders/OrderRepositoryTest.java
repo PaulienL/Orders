@@ -2,7 +2,6 @@ package be.cegeka.orders.order.domain.orders;
 
 import be.cegeka.orders.order.OrderApplication;
 import be.cegeka.orders.order.domain.customers.Customer;
-import be.cegeka.orders.order.domain.stock.StockEntry;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Before;
@@ -16,10 +15,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
+import java.time.LocalDate;
 
 /**
  * Created by xanv on 24/02/2017.
@@ -36,10 +32,16 @@ public class OrderRepositoryTest {
     private OrderRepository orderRepository;
     private Order order1, order2;
 
+
     @Before
     public void setupDatabase() {
-        order1 = new Order();
-        order2 = new Order();
+        Customer seppe = new Customer("Seppe", "Gielen");
+        Customer johan = new Customer("Johan", "Vdw");
+        entityManager.persist(seppe);
+        entityManager.persist(johan);
+
+        order1 = new Order(LocalDate.of(1992, 7, 17), seppe);
+        order2 = new Order(LocalDate.of(1992, 8, 17), johan);
 
         entityManager.persist(order1);
         entityManager.persist(order2);
@@ -48,7 +50,9 @@ public class OrderRepositoryTest {
 
     @Test
     public void addOrder() throws Exception {
-        Order order3 = new Order();
+        Customer paulien = new Customer("Paulien", "Lemay");
+        entityManager.persist(paulien);
+        Order order3 = new Order(LocalDate.of(1992,12,04), paulien);
         orderRepository.addOrder(order3);
         Assertions.assertThat(orderRepository.getOrders()).contains(order1, order2, order3);
     }
@@ -59,7 +63,7 @@ public class OrderRepositoryTest {
     }
 
     @After
-    public void cleanDatabase(){
+    public void cleanDatabase() {
         entityManager.clear();
     }
 
