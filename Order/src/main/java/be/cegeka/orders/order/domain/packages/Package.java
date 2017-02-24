@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Package {
     @Id
     @Column(name = "PACKAGE_ID")
-    int ioo;
+    int id;
 
     @ManyToOne
     @JoinColumn(name = "ITEM_ID")

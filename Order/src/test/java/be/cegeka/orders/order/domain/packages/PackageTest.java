@@ -2,6 +2,7 @@ package be.cegeka.orders.order.domain.packages;
 
 import be.cegeka.orders.order.OrderApplication;
 import be.cegeka.orders.order.domain.items.Item;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by roelg on 24/02/2017.
@@ -39,5 +41,7 @@ public class PackageTest {
     public void Shipment_can_persist() throws Exception {
         Package testPackage = new Package(item1, LocalDate.now());
         entityManager.persist(testPackage);
+        List<Package> actual = entityManager.createQuery("select p from packages p" , Package.class).getResultList();
+        Assertions.assertThat(actual).contains(testPackage);
     }
 }
