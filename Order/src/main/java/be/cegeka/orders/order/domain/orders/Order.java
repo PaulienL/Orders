@@ -1,6 +1,7 @@
 package be.cegeka.orders.order.domain.orders;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * Created by paulienl on 23/02/2017.
@@ -14,12 +15,13 @@ public class Order {
     private int id;
 
     @Column(name="ORDER_DATE")
-    private String orderDate;
+    private LocalDate orderDate;
 
-    @Column(name="CUSTOMER_ID")
-    private int customerId;
+//    @Column(name="CUSTOMER_ID")
+//    private int customerId;
 
-    public Order(String orderDate) {
+
+    public Order(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
