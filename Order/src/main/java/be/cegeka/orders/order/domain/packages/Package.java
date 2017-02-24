@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Table(name = "PACKAGES")
 public class Package {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PACKAGE_ID")
     int id;
 
