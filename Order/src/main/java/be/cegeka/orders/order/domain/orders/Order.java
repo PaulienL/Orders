@@ -1,5 +1,6 @@
 package be.cegeka.orders.order.domain.orders;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import java.time.LocalDate;
 

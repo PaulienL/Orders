@@ -4,6 +4,7 @@ import be.cegeka.orders.order.domain.customers.CustomerService;
 import be.cegeka.orders.order.domain.orders.Order;
 import be.cegeka.orders.order.domain.orders.OrderService;
 import be.cegeka.orders.order.domain.stock.StockEntry;
+import be.cegeka.orders.order.domain.stock.StockService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,9 @@ public class CustomerController {
     @Inject
     private OrderService orderService;
 
+    @Inject
+    private StockService stockService;
+
     @RequestMapping(method = POST)
     public
     @ResponseBody
@@ -42,6 +46,6 @@ public class CustomerController {
     @RequestMapping(method = GET)
     @ResponseBody
     public List<StockEntry> getStock(){
-        return orderService.getStock();
+        return stockService.getStock();
     }
 }
