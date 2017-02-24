@@ -1,7 +1,6 @@
-package be.cegeka.orders.order.domain.controller;
+package be.cegeka.orders.order.controller;
 
 import be.cegeka.orders.order.domain.customers.CustomerService;
-import be.cegeka.orders.order.domain.items.Item;
 import be.cegeka.orders.order.domain.orders.Order;
 import be.cegeka.orders.order.domain.orders.OrderService;
 import be.cegeka.orders.order.domain.stock.StockEntry;
@@ -43,8 +42,6 @@ public class CustomerController {
     @RequestMapping(method = GET)
     @ResponseBody
     public List<StockEntry> getStock(){
-        orderService.getStock();
+        return orderService.getStock();
     }
-
-
 }
