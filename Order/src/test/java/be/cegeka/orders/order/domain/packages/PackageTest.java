@@ -1,8 +1,11 @@
 package be.cegeka.orders.order.domain.packages;
 
 import be.cegeka.orders.order.OrderApplication;
+import be.cegeka.orders.order.domain.customers.Customer;
 import be.cegeka.orders.order.domain.items.Item;
+import be.cegeka.orders.order.domain.orders.Order;
 import org.assertj.core.api.Assertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,18 +33,29 @@ public class PackageTest {
     private EntityManager entityManager;
 
     private Item item1;
+    private Order order1;
+
 
     @Before
     public void setUp() throws Exception {
+        Customer seppe = new Customer("Seppe", "Gielen");
+        entityManager.persist(seppe);
         item1 = new Item("Smurfjes","Deze lekkere snoepjes zijn lekker?",4.5);
         entityManager.persist(item1);
+        order1 = new Order(LocalDate.now(),seppe);
+        entityManager.persist(order1);
     }
 
     @Test
-    public void Shipment_can_persist() throws Exception {
+    public void Package_can_persist() throws Exception {
         Package testPackage = new Package(item1, LocalDate.now());
-        entityManager.persist(testPackage);
-        List<Package> actual = entityManager.createQuery("select p from packages p" , Package.class).getResultList();
-        Assertions.assertThat(actual).contains(testPackage);
+        order1.addPackage(testPackage);
+        for (Package aPackage : order1.getPackages()) {
+            System.out.println(aPackage.toString());
+        }
+    }
+    @After
+    public void cleanDatabase(){
+        entityManager.clear();
     }
 }
