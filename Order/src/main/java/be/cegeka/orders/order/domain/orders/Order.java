@@ -8,6 +8,8 @@ import be.cegeka.orders.order.domain.shipment.Shipment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -39,5 +41,15 @@ public class Order {
     public Order(LocalDate orderDate, Customer customerId ) {
         this.orderDate = orderDate;
         this.customerId = customerId;
+        this.shipments = new ArrayList<>();
+    }
+    public Order(LocalDate orderDate, Customer customerId, Shipment... shipments) {
+        this.orderDate = orderDate;
+        this.customerId = customerId;
+        this.shipments = new ArrayList<>(Arrays.asList(shipments));
+    }
+
+    public void addShipment(){
+
     }
 }
