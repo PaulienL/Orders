@@ -1,7 +1,6 @@
-package be.cegeka.orders.order.domain.shipment;
+package be.cegeka.orders.order.domain.packages;
 
 import be.cegeka.orders.order.domain.items.Item;
-import be.cegeka.orders.order.domain.orders.Order;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,10 +9,10 @@ import java.time.LocalDate;
  * Created by roelg on 24/02/2017.
  */
 @Entity
-@Table(name = "SHIPMENTS")
-public class Shipment {
+@Table(name = "PACKAGES")
+public class Package {
     @Id
-    @Column(name = "SHIPMENT_ID")
+    @Column(name = "PACKAGE_ID")
     int ioo;
 
     @ManyToOne
@@ -23,10 +22,10 @@ public class Shipment {
     @Column(name = "SHIPPING_DATE")
     LocalDate shipping_date;
 
-    public Shipment() {
+    public Package() {
     }
 
-    public Shipment(Item item, LocalDate shipping_date) {
+    public Package(Item item, LocalDate shipping_date) {
         this.item = item;
         this.shipping_date = shipping_date;
     }
