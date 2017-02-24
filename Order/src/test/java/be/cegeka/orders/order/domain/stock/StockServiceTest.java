@@ -40,7 +40,7 @@ public class StockServiceTest {
     @Test
     public void addEntry() throws Exception {
         stockService.addEntry(stockEntry);
-        verify(stockRepository).addEntry(stockEntry); 
+        verify(stockRepository).addEntry(stockEntry);
     }
 
 }
