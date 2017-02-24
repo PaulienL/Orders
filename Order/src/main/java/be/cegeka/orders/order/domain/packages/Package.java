@@ -29,4 +29,13 @@ public class Package {
         this.item = item;
         this.shipping_date = shipping_date;
     }
+
+    @Override
+    public String toString() {
+        return "Package{" +
+                "id=" + id +
+                ", item=" + item +
+                ", shipping_date=" + shipping_date +
+                '}';
+    }
 }

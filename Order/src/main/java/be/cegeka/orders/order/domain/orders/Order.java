@@ -50,5 +50,13 @@ public class Order {
 
     public void addShipment(){
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", customerId=" + customerId +
+                ", packages=" + packages +
+                '}';
     }
 }

@@ -30,4 +30,12 @@ public class StockEntry {
     public Item getItem() {
         return item;
     }
+
+    @Override
+    public String toString() {
+        return "StockEntry{" +
+                "id=" + id +
+                ", item=" + item +
+                '}';
+    }
 }
