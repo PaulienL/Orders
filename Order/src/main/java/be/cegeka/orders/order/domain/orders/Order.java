@@ -56,6 +56,14 @@ public class Order {
         return packages;
     }
 
+    public double getTotalPrice(){
+        double output = 0;
+        for (Package aPackage : packages) {
+            output += aPackage.getItem().getPrice();
+        }
+        return output;
+    }
+
     @Override
     public String toString() {
         return "Order{" +

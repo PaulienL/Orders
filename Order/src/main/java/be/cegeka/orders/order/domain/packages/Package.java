@@ -31,6 +31,18 @@ public class Package {
         this.shipping_date = shipping_date;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public LocalDate getShipping_date() {
+        return shipping_date;
+    }
+
     @Override
     public String toString() {
         return "Package{" +
