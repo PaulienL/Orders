@@ -11,7 +11,7 @@ public class CustomerRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Customer> getAll(){
+    public List<Customer> getCustomers(){
         return entityManager.createQuery("select c from Customer c" , Customer.class).getResultList();
     }
     public void addCustomer(Customer customer){

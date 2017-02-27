@@ -40,14 +40,14 @@ public class CustomerRepositoryTest {
 
     @Test
     public void getAllShouldReturnAll() throws Exception {
-        assertThat(customerRepository.getAll()).contains(seppe, johan);
+        assertThat(customerRepository.getCustomers()).contains(seppe, johan);
     }
 
     @Test
     public void addCustomerShoudAddCustomer(){
         Customer paulien = new Customer("paulien", "lemay");
         customerRepository.addCustomer(paulien);
-        assertThat(customerRepository.getAll()).contains(seppe, johan, paulien);
+        assertThat(customerRepository.getCustomers()).contains(seppe, johan, paulien);
     }
 
     @After
