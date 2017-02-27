@@ -1,5 +1,7 @@
 package be.cegeka.orders.order.controller;
 
+import be.cegeka.orders.order.domain.customers.Customer;
+import be.cegeka.orders.order.domain.customers.CustomerService;
 import be.cegeka.orders.order.domain.items.Item;
 import be.cegeka.orders.order.domain.items.ItemService;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,10 @@ import java.util.List;
 @Transactional
 public class OwnerController {
     @Inject
-    ItemService itemService;
+    private ItemService itemService;
+
+    @Inject
+    private CustomerService customerService;
 
     @RequestMapping(path = "/item",method = RequestMethod.POST)
     @ResponseBody
@@ -33,6 +38,12 @@ public class OwnerController {
     @ResponseBody
     public List<Item> getGamma(){
         return itemService.getItems();
+    }
+
+    @RequestMapping(path = "/customer",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Customer> getCustomers(){
+        return customerService.getCustomers();
     }
 
 
