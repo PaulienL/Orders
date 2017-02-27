@@ -42,7 +42,7 @@ public class Order {
         this.customerId = customerId;
         this.packages = new ArrayList<>();
     }
-    public Order(LocalDate orderDate, Customer customerId, Package... packages) {
+    public Order(LocalDate orderDate, Customer customerId, List<Package>packages) {
         this.orderDate = orderDate;
         this.customerId = customerId;
         this.packages = new ArrayList<>(Arrays.asList(packages));

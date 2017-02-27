@@ -6,10 +6,8 @@ import be.cegeka.orders.order.domain.items.Item;
 import be.cegeka.orders.order.domain.items.ItemService;
 import be.cegeka.orders.order.domain.orders.Order;
 import be.cegeka.orders.order.domain.orders.OrderService;
-import be.cegeka.orders.order.domain.stock.StockEntry;
+import be.cegeka.orders.order.domain.stock.ItemQuantityCombo;
 import be.cegeka.orders.order.domain.stock.StockService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,7 +51,7 @@ public class OwnerController {
 
     @RequestMapping(path = "/stock",method = RequestMethod.GET)
     @ResponseBody
-    public List<Object[]> getStock(){
+    public List<ItemQuantityCombo> getStock(){
         return stockService.getStock();
     }
 

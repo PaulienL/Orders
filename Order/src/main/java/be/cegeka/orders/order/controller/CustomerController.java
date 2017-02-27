@@ -1,16 +1,19 @@
 package be.cegeka.orders.order.controller;
 
 import be.cegeka.orders.order.domain.customers.Address;
+import be.cegeka.orders.order.domain.customers.Customer;
 import be.cegeka.orders.order.domain.customers.CustomerService;
+import be.cegeka.orders.order.domain.items.Item;
 import be.cegeka.orders.order.domain.orders.Order;
 import be.cegeka.orders.order.domain.orders.OrderService;
-import be.cegeka.orders.order.domain.stock.StockEntry;
+import be.cegeka.orders.order.domain.stock.ItemQuantityCombo;
 import be.cegeka.orders.order.domain.stock.StockService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -50,7 +53,16 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List< Object[]> getStock(){
+    public List<ItemQuantityCombo> getStock(){
         return stockService.getStock();
+    }
+
+    @RequestMapping(path="/createOrder", method=POST)
+    @ResponseBody
+    public void createOrder(@RequestBody List<Item> items, Customer customer){
+        List<Package> packagesInOrder = stockService.itemsShippedTomorrow(items).addAll(stockService.itemsShippedNextWeek());
+        Order order = new Order(LocalDate.now(), customer);
+        orderService.addOrder(order);
+
     }
 }
