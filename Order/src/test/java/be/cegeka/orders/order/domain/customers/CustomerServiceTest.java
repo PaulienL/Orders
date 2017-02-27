@@ -7,9 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import javax.inject.Inject;
-
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.verify;
 
@@ -28,8 +25,9 @@ public class CustomerServiceTest {
 
     @Test
     public void addCustomer() throws Exception {
-        Customer customer=new Customer("paulien", "lemay");
-        customerService.addCustomer("paulien", "lemay");
+        Address address1 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
+        Customer customer=new Customer("paulien", "lemay", "paulien.lemay@cegeka.com", address1, "0485665878");
+        customerService.addCustomer("paulien", "lemay","paulien.lemay@cegeka.com", address1, "0485665878");
         verify(customerRepository).addCustomer(refEq(customer));
     }
 

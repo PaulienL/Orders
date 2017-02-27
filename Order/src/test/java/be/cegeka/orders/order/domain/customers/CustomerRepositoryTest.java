@@ -32,8 +32,10 @@ public class CustomerRepositoryTest {
 
     @Before
     public void setupDatabase() {
-         address1 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
+        address1 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
+        entityManager.persist(address1);
         Address address2 = new Address("Kerkstraat", 1, 9000, "Gent");
+        entityManager.persist(address2);
         seppe = new Customer("Seppe", "Gielen", "seppe.gielen@cegeka.com", address1, "0452889878");
         johan = new Customer("Johan", "Vdw", "johan.vdw@mail.com", address2, "0485665478");
 

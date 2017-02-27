@@ -1,6 +1,7 @@
 package be.cegeka.orders.order.domain.orders;
 
 import be.cegeka.orders.order.OrderApplication;
+import be.cegeka.orders.order.domain.customers.Address;
 import be.cegeka.orders.order.domain.customers.Customer;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
@@ -32,11 +33,17 @@ public class OrderRepositoryTest {
     private OrderRepository orderRepository;
     private Order order1, order2;
 
+    private Address address1;
+    private Address address2;
 
     @Before
     public void setupDatabase() {
-        Customer seppe = new Customer("Seppe", "Gielen");
-        Customer johan = new Customer("Johan", "Vdw");
+        address1 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
+        entityManager.persist(address1);
+        address2 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
+        entityManager.persist(address2);
+        Customer seppe = new Customer("Seppe", "Gielen", "seppe.gielen@cegeka.com", address1, "0452889878");
+        Customer johan = new Customer("Johan", "Vdw", "johan.vdw@mail.com", address2, "0485665478");
         entityManager.persist(seppe);
         entityManager.persist(johan);
 
@@ -45,12 +52,14 @@ public class OrderRepositoryTest {
 
         entityManager.persist(order1);
         entityManager.persist(order2);
+
+
     }
 
 
     @Test
     public void addOrder() throws Exception {
-        Customer paulien = new Customer("Paulien", "Lemay");
+        Customer paulien = new Customer("paulien", "lemay", "paulien.lemay@cegeka.com", address1, "0484558898");
         entityManager.persist(paulien);
         Order order3 = new Order(LocalDate.of(1992,12,04), paulien);
         orderRepository.addOrder(order3);
