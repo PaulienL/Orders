@@ -27,4 +27,13 @@ public class ItemService {
     public List<Item> getItems() {
         return itemRepository.getItems();
     }
+
+    public Item getItemById(int item_id) {
+        for (Item item : getItems()) {
+            if (item.getId() == item_id){
+                return item;
+            }
+        }
+        throw new IllegalArgumentException("Item does not exist");
+    }
 }

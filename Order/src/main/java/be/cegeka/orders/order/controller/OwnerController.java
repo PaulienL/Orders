@@ -47,8 +47,8 @@ public class OwnerController {
 
     @RequestMapping(path = "/stock",method = RequestMethod.POST)
     @ResponseBody
-    public void addItemToStock(@RequestBody Item item){
-     stockService.addEntry(item);
+    public void addItemToStock(@RequestBody int item_id){
+     stockService.addEntry(itemService.getItemById(item_id));
     }
 
     @RequestMapping(path = "/stock",method = RequestMethod.GET)
@@ -68,6 +68,4 @@ public class OwnerController {
     public List<Order> getCustomers(@PathVariable int id){
         return orderService.getOrdersByCustomer(id);
     }
-
-
 }
