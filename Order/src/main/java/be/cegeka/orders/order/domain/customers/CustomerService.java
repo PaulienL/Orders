@@ -12,8 +12,8 @@ public class CustomerService {
     @Inject
     CustomerRepository customerRepository;
 
-    public void addCustomer(String firstName, String lastName) {
-        customerRepository.addCustomer(new Customer(firstName, lastName));
+    public void addCustomer(String firstName, String lastName, String email, Address address, String phoneNumber){
+        customerRepository.addCustomer(new Customer(firstName, lastName, email, address, phoneNumber));
     }
 
     public List<Customer> getCustomers() {
