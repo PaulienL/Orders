@@ -26,10 +26,11 @@ import java.util.List;
 public class OwnerController {
     @Inject
     private ItemService itemService;
-
     @Inject
     private CustomerService customerService;
+    @Inject
     private OrderService orderService;
+    @Inject
     private StockService stockService;
 
     @RequestMapping(path = "/item",method = RequestMethod.POST)
@@ -37,6 +38,7 @@ public class OwnerController {
     public void addItem(@RequestBody Item item){
      itemService.addItem(item);
     }
+
     @RequestMapping(path = "/item",method = RequestMethod.GET)
     @ResponseBody
     public List<Item> getGamma(){
@@ -49,7 +51,7 @@ public class OwnerController {
      stockService.addEntry(item);
     }
 
-    @RequestMapping(path = "/item",method = RequestMethod.GET)
+    @RequestMapping(path = "/stock",method = RequestMethod.GET)
     @ResponseBody
     public List<StockEntry> getStock(){
         return stockService.getStock();
@@ -66,5 +68,6 @@ public class OwnerController {
     public List<Order> getCustomers(@PathVariable int id){
         return orderService.getOrdersByCustomer(id);
     }
+
 
 }
