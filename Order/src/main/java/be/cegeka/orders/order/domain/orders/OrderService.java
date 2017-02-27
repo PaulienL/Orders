@@ -20,4 +20,8 @@ public class OrderService {
     public List<Order> getOrders() {
         return orderRepository.getOrders();
     }
+
+    public List<Order> getOrdersByCustomer(int id) {
+        return orderRepository.getOrdersByCustomer(id);
+    }
 }

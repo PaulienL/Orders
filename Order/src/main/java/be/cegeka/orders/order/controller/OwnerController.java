@@ -36,7 +36,7 @@ public class OwnerController {
     @RequestMapping(path = "/item",method = RequestMethod.POST)
     @ResponseBody
     public void addItem(@RequestBody Item item){
-     itemService.addItem(item);
+        itemService.addItem(item);
     }
 
     @RequestMapping(path = "/item",method = RequestMethod.GET)
