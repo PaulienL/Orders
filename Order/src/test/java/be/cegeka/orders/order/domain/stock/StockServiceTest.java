@@ -1,7 +1,6 @@
 package be.cegeka.orders.order.domain.stock;
 
-import be.cegeka.orders.order.domain.orders.OrderRepository;
-import be.cegeka.orders.order.domain.orders.OrderService;
+import be.cegeka.orders.order.domain.items.Item;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -9,10 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -29,7 +25,7 @@ public class StockServiceTest {
     private StockRepository stockRepository;
 
     @Mock
-    private StockEntry stockEntry;
+    private Item item;
 
     @Test
     public void getStock() throws Exception {
@@ -39,8 +35,8 @@ public class StockServiceTest {
 
     @Test
     public void addEntry() throws Exception {
-        stockService.addEntry(stockEntry);
-        verify(stockRepository).addEntry(stockEntry);
+        stockService.addEntry(item);
+        verify(stockRepository).addEntry(any(StockEntry.class));
     }
 
 }
