@@ -4,13 +4,14 @@ import be.cegeka.orders.order.domain.customers.Customer;
 import be.cegeka.orders.order.domain.customers.CustomerService;
 import be.cegeka.orders.order.domain.items.Item;
 import be.cegeka.orders.order.domain.items.ItemService;
+import be.cegeka.orders.order.domain.orders.Order;
+import be.cegeka.orders.order.domain.orders.OrderService;
+import be.cegeka.orders.order.domain.stock.StockEntry;
+import be.cegeka.orders.order.domain.stock.StockService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -28,6 +29,8 @@ public class OwnerController {
 
     @Inject
     private CustomerService customerService;
+    private OrderService orderService;
+    private StockService stockService;
 
     @RequestMapping(path = "/item",method = RequestMethod.POST)
     @ResponseBody
@@ -40,11 +43,28 @@ public class OwnerController {
         return itemService.getItems();
     }
 
+    @RequestMapping(path = "/stock",method = RequestMethod.POST)
+    @ResponseBody
+    public void addItemToStock(@RequestBody Item item){
+     stockService.addEntry(item);
+    }
+
+    @RequestMapping(path = "/item",method = RequestMethod.GET)
+    @ResponseBody
+    public List<StockEntry> getStock(){
+        return stockService.getStock();
+    }
+
     @RequestMapping(path = "/customer",method = RequestMethod.GET)
     @ResponseBody
     public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
 
+    @RequestMapping(path = "/customer/{id}/orders",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Order> getCustomers(@PathVariable int id){
+        return orderService.getOrdersByCustomer(id);
+    }
 
 }
