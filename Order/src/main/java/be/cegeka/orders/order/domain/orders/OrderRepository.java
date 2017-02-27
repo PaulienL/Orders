@@ -25,7 +25,5 @@ public class OrderRepository {
         return entityManager.createQuery("select o from Order o where o.CUSTOMER_ID = " + id, Order.class).getResultList();
     }
 
-    public List<Item> getQuantityOnStock(){
-        return entityManager.createQuery("SELECT i.NAME, COUNT(s.ITEM_ID) FROM ITEMS i JOIN STOCK s ON s.ITEM_ID=i.ITEM_ID GROUP BY i.NAME", Item.class).getResultList();
-    }
+
 }

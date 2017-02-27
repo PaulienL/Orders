@@ -50,7 +50,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<StockEntry> getStock(){
+    public List< Object[]> getStock(){
         return stockService.getStock();
     }
 }

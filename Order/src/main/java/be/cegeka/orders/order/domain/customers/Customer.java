@@ -18,7 +18,7 @@ public class Customer {
     private String emailAddress;
     @ManyToOne
     @JoinColumn(name="ADDRESS_ID")
-    private Address address_Id;
+    private Address address;
     @Column (name="PHONE")
     private String phoneNumber;
 
@@ -29,7 +29,7 @@ public class Customer {
         this.name = name;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.address_Id = address;
+        this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
@@ -57,7 +57,7 @@ public class Customer {
         if (lastName != null ? !lastName.equals(customer.lastName) : customer.lastName != null) return false;
         if (emailAddress != null ? !emailAddress.equals(customer.emailAddress) : customer.emailAddress != null)
             return false;
-        if (address_Id != null ? !address_Id.equals(customer.address_Id) : customer.address_Id != null) return false;
+        if (address != null ? !address.equals(customer.address) : customer.address != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(customer.phoneNumber) : customer.phoneNumber != null)
             return false;
 
@@ -69,7 +69,7 @@ public class Customer {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (emailAddress != null ? emailAddress.hashCode() : 0);
-        result = 31 * result + (address_Id != null ? address_Id.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         return result;
     }

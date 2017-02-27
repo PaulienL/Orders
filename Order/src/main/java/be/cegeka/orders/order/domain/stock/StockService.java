@@ -11,8 +11,8 @@ public class StockService {
     @Inject
     private StockRepository stockRepository;
 
-    public List<StockEntry> getStock() {
-        return stockRepository.getStock();
+    public List<Object[]> getStock() {
+        return stockRepository.getQuantityOnStock();
     }
 
     public void addEntry(Item item){
