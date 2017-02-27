@@ -10,3 +10,4 @@ out
 .gradle
 build
 .idea/workspace.xml
+classes/
