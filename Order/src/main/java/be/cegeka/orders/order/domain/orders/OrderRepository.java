@@ -24,6 +24,4 @@ public class OrderRepository {
     public List<Order> getOrdersByCustomer(int id) {
         return entityManager.createQuery("select o from Order o where o.CUSTOMER_ID = " + id, Order.class).getResultList();
     }
-
-
 }
