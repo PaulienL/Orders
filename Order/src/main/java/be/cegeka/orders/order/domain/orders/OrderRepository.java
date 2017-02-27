@@ -1,7 +1,6 @@
 package be.cegeka.orders.order.domain.orders;
 
-import be.cegeka.orders.order.domain.customers.Customer;
-import be.cegeka.orders.order.domain.stock.StockEntry;
+import be.cegeka.orders.order.domain.items.Item;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -22,5 +21,9 @@ public class OrderRepository {
 
     public List<Order> getOrders() {
         return entityManager.createQuery("select o from Order o" , Order.class).getResultList();
+    }
+
+    public List<Item> getQuantityOnStock(){
+        return entityManager.createQuery("SELECT i.NAME, COUNT(s.ITEM_ID) FROM ITEMS i JOIN STOCK s ON s.ITEM_ID=i.ITEM_ID GROUP BY i.NAME", Item.class).getResultList();
     }
 }

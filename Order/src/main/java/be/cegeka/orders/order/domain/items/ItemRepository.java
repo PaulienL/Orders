@@ -22,5 +22,4 @@ public class ItemRepository {
     public List<Item> getItems() {
         return entityManager.createQuery("select o from Item o" , Item.class).getResultList();
     }
-
 }
