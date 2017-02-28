@@ -73,16 +73,18 @@ public class CustomerController {
         Item item = new Item("stupid", "this is filthy", 69);
         itemService.addItem(item);
         Package aPackage = new Package(item, LocalDate.now());
-        order.addPackage(aPackage);
+        System.out.println(aPackage);
+        orderService.addPackage(aPackage,order);
+        System.out.println(aPackage);
         return "fuck you";
     }
 
-    @RequestMapping(path = "/createOrder", method = POST)
-    @ResponseBody
-    public void createOrder(@RequestBody List<Item> items, Customer customer) {
-        List<Package> packagesInOrder = stockService.itemsShippedTomorrow(items).addAll(stockService.itemsShippedNextWeek());
-        Order order = new Order(LocalDate.now(), customer);
-        orderService.addOrder(order);
-
-    }
+//    @RequestMapping(path = "/createOrder", method = POST)
+//    @ResponseBody
+//    public void createOrder(@RequestBody List<Item> items, Customer customer) {
+//        List<Package> packagesInOrder = stockService.itemsShippedTomorrow(items).addAll(stockService.itemsShippedNextWeek(items));
+//        Order order = new Order(LocalDate.now(), customer);
+//        orderService.addOrder(order);
+//
+//    }
 }
