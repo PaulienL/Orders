@@ -27,7 +27,7 @@ public class CustomerServiceTest {
     public void addCustomer() throws Exception {
         Address address1 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
         Customer customer=new Customer("paulien", "lemay", "paulien.lemay@cegeka.com", address1, "0485665878");
-        customerService.addCustomer("paulien", "lemay","paulien.lemay@cegeka.com", address1, "0485665878");
+//        customerService.addCustomer("paulien", "lemay","paulien.lemay@cegeka.com", address1, "0485665878");
         verify(customerRepository).addCustomer(refEq(customer));
     }
 
