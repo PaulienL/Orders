@@ -1,7 +1,5 @@
 package be.cegeka.orders.order.domain.orders;
 
-import be.cegeka.orders.order.domain.stock.StockEntry;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -24,4 +22,6 @@ public class OrderService {
     public List<Order> getOrdersByCustomer(int id) {
         return orderRepository.getOrdersByCustomer(id);
     }
+
+
 }

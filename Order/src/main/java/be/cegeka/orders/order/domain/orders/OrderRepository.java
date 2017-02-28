@@ -1,5 +1,4 @@
 package be.cegeka.orders.order.domain.orders;
-import be.cegeka.orders.order.domain.items.Item;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

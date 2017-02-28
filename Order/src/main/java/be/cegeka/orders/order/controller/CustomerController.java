@@ -8,6 +8,7 @@ import be.cegeka.orders.order.domain.items.ItemService;
 import be.cegeka.orders.order.domain.orders.Order;
 import be.cegeka.orders.order.domain.orders.OrderService;
 import be.cegeka.orders.order.domain.packages.Package;
+import be.cegeka.orders.order.domain.stock.ItemQuantityCombo;
 import be.cegeka.orders.order.domain.stock.StockService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,11 +58,11 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<Object[]> getStock() {
+    public List<ItemQuantityCombo> getStock() {
         return stockService.getStock();
     }
 
-    @RequestMapping(path="/reallyreallyfilthy",method = RequestMethod.GET)
+    @RequestMapping(path = "/reallyreallyfilthy", method = RequestMethod.GET)
     @ResponseBody
     public String filthyRoel() {
         Address address = new Address("poepenholleken", 69, 6969, "Hollekepoep");
@@ -74,5 +75,14 @@ public class CustomerController {
         Package aPackage = new Package(item, LocalDate.now());
         order.addPackage(aPackage);
         return "fuck you";
+    }
+
+    @RequestMapping(path = "/createOrder", method = POST)
+    @ResponseBody
+    public void createOrder(@RequestBody List<Item> items, Customer customer) {
+        List<Package> packagesInOrder = stockService.itemsShippedTomorrow(items).addAll(stockService.itemsShippedNextWeek());
+        Order order = new Order(LocalDate.now(), customer);
+        orderService.addOrder(order);
+
     }
 }
