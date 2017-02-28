@@ -1,5 +1,7 @@
 package be.cegeka.orders.order.domain.orders;
 
+import be.cegeka.orders.order.domain.packages.Package;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -23,5 +25,12 @@ public class OrderService {
         return orderRepository.getOrdersByCustomer(id);
     }
 
+    public void addPackage(Package aPackage, Order order){
+//        Order order = orderRepository.getOrderByID(order_id);
+        System.out.println("adding");
+        order.addPackage(aPackage);
+        System.out.println("merging");
+        orderRepository.updateOrder(order);
+    }
 
 }
