@@ -12,9 +12,7 @@ public class CustomerService {
     @Inject
     CustomerRepository customerRepository;
 
-    public void addCustomer(String firstName, String lastName, String email, Address address, String phoneNumber) {
-        Customer customer = new Customer(firstName, lastName, email, address, phoneNumber);
-
+    public void addCustomer(Customer customer) {
         if (getCustomers().contains(customer)) {
             throw new IllegalArgumentException("Customer already exist");
         } else {
