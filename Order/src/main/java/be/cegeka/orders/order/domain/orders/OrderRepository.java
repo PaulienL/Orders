@@ -16,11 +16,19 @@ public class OrderRepository {
         entityManager.persist(order);
     }
 
+    public void updateOrder(Order order) {
+        entityManager.merge(order);
+    }
+
     public List<Order> getOrders() {
         return entityManager.createQuery("select o from Order o", Order.class).getResultList();
     }
 
     public List<Order> getOrdersByCustomer(int id) {
         return entityManager.createQuery("select o from Order o where o.CUSTOMER_ID = " + id, Order.class).getResultList();
+    }
+
+    public Order getOrderByID(int id) {
+        return entityManager.createQuery("select o from Order o where o.id " + id, Order.class).getSingleResult();
     }
 }
