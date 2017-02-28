@@ -23,10 +23,10 @@ public class Package {
 
     @Column(name = "SHIPPING_DATE")
     LocalDate shipping_date;
-
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "ORDER_ID")
+//    private Order order;
 
     public Package() {
     }
@@ -54,7 +54,7 @@ public class Package {
                 "id=" + id +
                 ", item=" + item +
                 ", shipping_date=" + shipping_date +
-                ", order=" + order +
+//                ", order=" + order +
                 '}';
     }
 }
