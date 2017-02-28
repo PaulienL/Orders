@@ -60,4 +60,19 @@ public class CustomerController {
     public List<Object[]> getStock() {
         return stockService.getStock();
     }
+
+    @RequestMapping(path="/reallyreallyfilthy",method = RequestMethod.GET)
+    @ResponseBody
+    public String filthyRoel() {
+        Address address = new Address("poepenholleken", 69, 6969, "Hollekepoep");
+        Customer customer = new Customer("filthy", "Roel", "filthyroel@beardy.com", address, "0469696969");
+        customerService.addCustomer(customer);
+        Order order = new Order(LocalDate.now(), customer);
+        orderService.addOrder(order);
+        Item item = new Item("stupid", "this is filthy", 69);
+        itemService.addItem(item);
+        Package aPackage = new Package(item, LocalDate.now());
+        order.addPackage(aPackage);
+        return "fuck you";
+    }
 }
