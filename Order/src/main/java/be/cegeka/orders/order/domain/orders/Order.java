@@ -27,28 +27,38 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name="CUSTOMER_ID")
-    private Customer customerId;
+    private Customer customer;
 
-
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
-    private List<Package> packages;
+    private List<Package> packages= new ArrayList<>();
 
     public Order() {
     }
 
-    public Order(LocalDate orderDate, Customer customerId ) {
+    public Order(LocalDate orderDate, Customer customer) {
         this.orderDate = orderDate;
-        this.customerId = customerId;
-        this.packages = new ArrayList<>();
+        this.customer = customer;
     }
-    public Order(LocalDate orderDate, Customer customerId, Package... packages) {
+    public Order(LocalDate orderDate, Customer customer, Package... packages) {
         this.orderDate = orderDate;
-        this.customerId = customerId;
-        this.packages = new ArrayList<>(Arrays.asList(packages));
+        this.customer = customer;
+        this.packages.addAll(Arrays.asList(packages));
     }
 
-    public void addPackage(Package aPackage){
+    public int getId() {
+        return id;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void addPackage(Package aPackage) {
         packages.add(aPackage);
     }
 
@@ -69,7 +79,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", orderDate=" + orderDate +
-                ", customerId=" + customerId +
+                ", customer=" + customer +
                 ", packages=" + packages +
                 '}';
     }
