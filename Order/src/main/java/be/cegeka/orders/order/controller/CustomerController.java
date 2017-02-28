@@ -1,16 +1,23 @@
 package be.cegeka.orders.order.controller;
 
 import be.cegeka.orders.order.domain.customers.Address;
+import be.cegeka.orders.order.domain.customers.Customer;
 import be.cegeka.orders.order.domain.customers.CustomerService;
+import be.cegeka.orders.order.domain.items.Item;
+import be.cegeka.orders.order.domain.items.ItemService;
 import be.cegeka.orders.order.domain.orders.Order;
 import be.cegeka.orders.order.domain.orders.OrderService;
-import be.cegeka.orders.order.domain.stock.StockEntry;
+import be.cegeka.orders.order.domain.packages.Package;
 import be.cegeka.orders.order.domain.stock.StockService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -32,25 +39,25 @@ public class CustomerController {
     @Inject
     private StockService stockService;
 
-    @RequestMapping(method = POST)
+    @Inject
+    private ItemService itemService;
+
+
+    @RequestMapping(path = "/order", method = POST)
     @ResponseBody
-    public void addCustomer(@RequestParam(value = "firstname") String firstName,
-                            @RequestParam(value = "lastname") String lastName,
-                            @RequestParam(value = "email") String emailAddress,
-                            @RequestBody Address address,
-                            @RequestParam(value = "phone")String phoneNumber) {
-        customerService.addCustomer(firstName, lastName, emailAddress, address, phoneNumber);
+    public void addOrder(@RequestBody Order order) {
+        orderService.addOrder(order);
     }
 
-    @RequestMapping(path="/order", method=POST)
+    @RequestMapping(method = POST)
     @ResponseBody
-    public void addOrder(@RequestBody Order order){
-        orderService.addOrder(order);
+    public void addCustomer(@RequestBody Customer customer) {
+        customerService.addCustomer(customer);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List< Object[]> getStock(){
+    public List<Object[]> getStock() {
         return stockService.getStock();
     }
 }
