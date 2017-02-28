@@ -30,34 +30,47 @@ public class PackageTest {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private Item item1;
+    private Item item1, item2;
     private Order order1;
     Address address1;
+    Customer seppe;
 
 
     @Before
     public void setUp() throws Exception {
+
         address1 = new Address("Doelhaagstraat", 60, 2840, "Rumst");
         entityManager.persist(address1);
-        Customer seppe = new Customer("Seppe", "Gielen", "seppe.gielen@cegeka.com", address1, "0452889878");
 
+        seppe = new Customer("Seppe", "Gielen", "seppe.gielen@cegeka.com", address1, "0452889878");
         entityManager.persist(seppe);
+
         item1 = new Item("Smurfjes","Deze lekkere snoepjes zijn lekker?",4.5);
         entityManager.persist(item1);
-        order1 = new Order(LocalDate.now(),seppe);
-        entityManager.persist(order1);
 
+        item2 = new Item("HUEHUEH","Deze lekkere snoepjes zijn lekker?",4.5);
+        entityManager.persist(item2);
     }
 
     @Test
     public void Package_can_persist() throws Exception {
+
         Package testPackage = new Package(item1, LocalDate.now());
+
+        //entityManager.persist(testPackage);
+
+        order1 = new Order(LocalDate.now(),seppe);
+        entityManager.persist(order1);
+
         order1.addPackage(testPackage);
-        System.out.println(order1.getCustomer());
-//        entityManager.persist(testPackage);
-        for (Package aPackage : order1.getPackages()) {
-            System.out.println(aPackage.toString());
-        }
+        entityManager.merge(order1);
+       // entityManager.merge(testPackage);
+
+        //entityManager.persist(testPackage);
+//
+//        for (Package aPackage : order1.getPackages()) {
+//            System.out.println(aPackage.toString());
+//        }
     }
     @After
     public void cleanDatabase(){
