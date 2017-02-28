@@ -53,6 +53,8 @@ public class PackageTest {
     public void Package_can_persist() throws Exception {
         Package testPackage = new Package(item1, LocalDate.now());
         order1.addPackage(testPackage);
+        System.out.println(order1.getCustomer());
+//        entityManager.persist(testPackage);
         for (Package aPackage : order1.getPackages()) {
             System.out.println(aPackage.toString());
         }

@@ -1,6 +1,7 @@
 package be.cegeka.orders.order.domain.packages;
 
 import be.cegeka.orders.order.domain.items.Item;
+import be.cegeka.orders.order.domain.orders.Order;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,10 @@ public class Package {
 
     @Column(name = "SHIPPING_DATE")
     LocalDate shipping_date;
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
 
     public Package() {
     }
@@ -49,6 +54,7 @@ public class Package {
                 "id=" + id +
                 ", item=" + item +
                 ", shipping_date=" + shipping_date +
+                ", order=" + order +
                 '}';
     }
 }
