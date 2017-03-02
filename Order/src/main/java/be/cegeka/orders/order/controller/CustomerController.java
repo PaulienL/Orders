@@ -71,11 +71,7 @@ public class CustomerController {
         Order order = new Order(LocalDate.now(), customer);
         orderService.addOrder(order);
         Item item = new Item("stupid", "this is filthy", 69);
-        itemService.addItem(item);
-        Package aPackage = new Package(item, LocalDate.now());
-        System.out.println(aPackage);
-        orderService.addPackage(aPackage,order);
-        System.out.println(aPackage);
+        orderService.addPackage(item, LocalDate.now(),order.getId());
         return "fuck you";
     }
 

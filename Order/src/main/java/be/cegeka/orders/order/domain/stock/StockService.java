@@ -35,23 +35,23 @@ public class StockService {
         return true;
     }
 
-    public List<Package> itemsShippedTomorrow(List<Item> items){
-        List<Package> shippedTomorrow=new ArrayList<>();
-        for(Item item : items){
-            if(itemIsOnStock(item)){
-                shippedTomorrow.add(new Package(item, LocalDate.now().plusDays(1l)));
-            }
-        }
-        return shippedTomorrow;
-    }
+//    public List<Package> itemsShippedTomorrow(List<Item> items){
+//        List<Package> shippedTomorrow=new ArrayList<>();
+//        for(Item item : items){
+//            if(itemIsOnStock(item)){
+//                shippedTomorrow.add(new Package(item, LocalDate.now().plusDays(1l)));
+//            }
+//        }
+//        return shippedTomorrow;
+//    }
 
-    public List<Package> itemsShippedNextWeek(List<Item> items){
-        List<Package> shippedNextWeek=new ArrayList<>();
-        for(Item item : items){
-            if(!itemIsOnStock(item)){
-                shippedNextWeek.add(new Package(item, LocalDate.now().plusDays(1l)));
-            }
-        }
-        return shippedNextWeek;
-    }
+//    public List<Package> itemsShippedNextWeek(List<Item> items){
+//        List<Package> shippedNextWeek=new ArrayList<>();
+//        for(Item item : items){
+//            if(!itemIsOnStock(item)){
+//                shippedNextWeek.add(new Package(item, LocalDate.now().plusDays(1l)));
+//            }
+//        }
+//        return shippedNextWeek;
+//    }
 }

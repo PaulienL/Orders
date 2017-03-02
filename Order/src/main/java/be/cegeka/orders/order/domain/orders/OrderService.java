@@ -1,10 +1,13 @@
 package be.cegeka.orders.order.domain.orders;
 
+import be.cegeka.orders.order.domain.items.Item;
 import be.cegeka.orders.order.domain.packages.Package;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.jar.Pack200;
 
 /**
  * Created by xanv on 24/02/2017.
@@ -25,10 +28,10 @@ public class OrderService {
         return orderRepository.getOrdersByCustomer(id);
     }
 
-    public void addPackage(Package aPackage, Order order){
-//        Order order = orderRepository.getOrderByID(order_id);
+    public void addPackage(Item item, LocalDate shipping_date, int order_id){
+        Order order = orderRepository.getOrderByID(order_id);
         System.out.println("adding");
-        order.addPackage(aPackage);
+        order.addPackage(new Package(item , shipping_date, order) );
         System.out.println("merging");
         orderRepository.updateOrder(order);
     }

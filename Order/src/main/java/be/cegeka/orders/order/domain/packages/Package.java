@@ -23,17 +23,18 @@ public class Package {
 
     @Column(name = "SHIPPING_DATE")
     LocalDate shipping_date;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "ORDER_ID")
-//    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
 
     public Package() {
     }
 
-    public Package(Item item, LocalDate shipping_date) {
+    public Package(Item item, LocalDate shipping_date, Order order) {
         this.item = item;
         this.shipping_date = shipping_date;
+        this.order = order;
     }
 
     public int getId() {
@@ -48,13 +49,17 @@ public class Package {
         return shipping_date;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
     @Override
     public String toString() {
         return "Package{" +
                 "id=" + id +
                 ", item=" + item +
                 ", shipping_date=" + shipping_date +
-//                ", order=" + order +
+                ", order=" + order +
                 '}';
     }
 }

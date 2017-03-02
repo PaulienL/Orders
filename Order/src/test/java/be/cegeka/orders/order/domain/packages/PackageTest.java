@@ -55,14 +55,16 @@ public class PackageTest {
     @Test
     public void Package_can_persist() throws Exception {
 
-        Package testPackage = new Package(item1, LocalDate.now());
 
         //entityManager.persist(testPackage);
 
         order1 = new Order(LocalDate.now(),seppe);
         entityManager.persist(order1);
 
+        Package testPackage = new Package(item1, LocalDate.now(), order1);
+
         order1.addPackage(testPackage);
+
         entityManager.merge(order1);
        // entityManager.merge(testPackage);
 
